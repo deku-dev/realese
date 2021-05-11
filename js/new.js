@@ -972,17 +972,33 @@ function sendAuth(e) {
   let form = new FormData(this);
   fetch("auth.php", { method: "POST", body: form })
     .then(fetchHandler)
-    .then(json)
+    .then(text)
     .then((res) => {
+      res = JSON.parse(res);
       console.log(res);
-      let img = document.getElementById("img_user-js");
-      img.click();
-      img.src = res.picture;
-      img.classList.add("login-true");
-      window.location.reload();
+      let statText = {
+        pass: "Неправильный пароль или никнейм",
+        nick: "Такой никнейм уже существует",
+        email: "Такой email уже существует",
+      };
+      if (res.err) {
+        noticeAll(statText[res.err], 1);
+        return;
+      }
+      if (res.act == "log") {
+        let img = document.getElementById("img_user-js");
+        img.click();
+        img.src = res.picture;
+        img.classList.add("login-true");
+        window.location.reload();
+      } else if (res.act == "reg") {
+        noticeAll("Аккаунт зарегистрирован. Войдите");
+      }
     })
     .catch((err) => {
-      console.log(err);
+      if (err.message == 401) {
+        noticeAll("Произошла неизвестная ошибка", 1);
+      }
     });
 }
 function loadProfile(e) {
