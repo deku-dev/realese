@@ -1,0 +1,40 @@
+.block-feed{
+  padding:20px;
+  width:100%;
+}
+#feedback-form{
+  display:flex;
+  flex-flow:column nowrap;
+}
+.input-feed{
+  border:none;
+  padding:12px;
+  margin:10px;
+  width:50%;
+  background-color: #1d212c;
+  color:#a0b9b9;
+  transition:background-color 0.2s ease-in-out;
+  font-size: 0.8em;
+}
+.input-feed:-webkit-autofill {
+  box-shadow: 0 0 0 30px #141c29 inset;
+  -webkit-text-fill-color: #a0b9b9 !important;
+  color: #a0b9b9; !important;
+}
+.input-feed:hover, .submit-feed:hover{
+  background-color:#222c3d;
+}
+.block__submit{
+  width:50%;
+  text-align:right;
+  margin:10px;
+}
+.submit-feed{
+    border:none;
+    padding:12px;
+    width:40%;
+    background-color: #2e3751;
+    color:#a0b9b9;
+    transition:background-color 0.2s ease-in-out;
+    font-size: 0.8em;
+}

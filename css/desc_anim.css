@@ -1,0 +1,55 @@
+.anim_short_text {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.text_hide {
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 40px 20px;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.text_hide p {
+  font-size: 14px;
+}
+
+.anim_short_text a:before,
+.anim_short_text a:after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  transition: 0.5s ease-in-out;
+  mix-blend-mode: darken;
+}
+
+.anim_short_text a:before {
+  right: 0;
+  bottom: -100%;
+  background: rgba(230, 12, 50, 0.8);
+  transform: skew(-45deg) translateX(100%);
+}
+
+.anim_short_text a:after {
+  left: 0;
+  top: -100%;
+  background: rgba(11, 72, 174, 0.8);
+  transform: skew(135deg) translateX(-100%);
+}
+
+.anim_short_text:hover a:before {
+  transform: skew(-45deg) translateX(0%);
+}
+
+.anim_short_text:hover a:after {
+  transform: skew(135deg) translateX(0%);
+}
+
+.anim_short_text:hover .text_hide {
+  opacity: 1;
+}
