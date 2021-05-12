@@ -1276,7 +1276,7 @@ function nickCheck(nick) {
       res = JSON.parse(res);
       console.log(res);
       if (res.nick == "1") {
-        noticeAll("Такой никнейм уже существует");
+        noticeAll("Такой никнейм уже существует", 1);
         nick.classList.add("invalid");
       } else {
         nick.classList.remove("invalid");

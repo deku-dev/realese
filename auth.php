@@ -4,7 +4,7 @@ $arrStat = [];
 if (!empty($_POST["lpass"])) {
   $lnick = escStr($_POST["nick"]);
   $lpass = escStr($_POST["lpass"]);
-  $searchNick = "SELECT `nickname`, `user_id`, `password`, `picture`, `banned_user` FROM `users` WHERE `nickname` = " . $lnick;
+  $searchNick = "SELECT `nickname`, `user_id`, `password`, `picture`, `banned_user` FROM `users` WHERE `nickname` = '{$lnick}'";
   $res = $mysqli->query($searchNick);
   if (!$res->num_rows) {
     $arrStat['err'] = "pass";
