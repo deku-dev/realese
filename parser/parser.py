@@ -31,7 +31,7 @@ def listParse(soup):
 def dictparse(listv):
   return dict(s.split(':',1) for s in searchDot(listv))
 def searchDot(string):
-  listProp = ['Год выпуска', 'Жанр', 'Разработчик', 'Издательство', 'Платформа', 'Язык интерфейса', 'Язык озвучки', 'Таблетка', 'ОС', 'Процессор', 'Оперативная память', 'Видеокарта']
+  listProp = ['Год выпуска', 'Жанр', 'Разработчик', 'Издательство', 'Платформа', 'Язык интерфейса', 'Язык озвучки', 'Таблетка', 'ОС', 'Процессор', 'Оперативная память', 'Видеокарта', "Место на диске"]
   worss = []
   for listr in string:
     if listr.find(':') == -1:
@@ -120,10 +120,8 @@ def parserSite(siteurl, game_id, connection):
     else:
       fileurl = htmlGame.select('.torrent')
       size = htmlGame.select('center span[style="font-size:14pt;"] span[style="color: #89c80e;"]')
-      idn = 0
       for item in size:
         sizelist.append(item.text)
-      filesize = list(filter(None, sizelist))
       for file in fileurl:
         filelist.append("https://s1.torrents-igruha.org/engine/download.php?id="+file['href'].split('=')[-1])
       fileDump = json.dumps(dict(zip(filelist,sizelist)), ensure_ascii=False)
@@ -230,7 +228,6 @@ def parseCat():
   finally:
     connection.close()
   ins = "INSERT INTO `cat_game` (`game_id`, `cat_id`) VALUES "
-  stat = "('6', '17')"
   x = 1
   z = 1
   while x<3540:
@@ -260,7 +257,6 @@ def langSet():
   finally:
     connection.close()
   ins = "INSERT INTO `lang` (`game_id`, `cat_id`) VALUES "
-  stat = "('6', '17')"
   x = 1
   z = 1
   while x<3540:
