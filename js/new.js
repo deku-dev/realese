@@ -1152,6 +1152,10 @@ function sendReview(e) {
     .then(text)
     .then((res) => {
       res = JSON.parse(res);
+      if (res.err == "login") {
+        noticeAll("Войдите или зарегистрируйтесь", 1);
+        return;
+      }
       loadRev();
       if (res[0][3]) {
         loadComment("user");
