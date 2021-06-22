@@ -1,0 +1,3 @@
+import analyzer
+
+analyzer.main()

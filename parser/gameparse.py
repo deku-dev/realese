@@ -2,9 +2,11 @@ import re, bs4, requests, json
 class GameParse: # Page game with all data
   def __init__(self, page):
     self.gameHtml = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
+    self.dateGame = 0
+    self.gameStatus = []
 
   def searchDot(self, string):
-    listProp = ['Год выпуска', 'Жанр', 'Разработчик', 'Издательство', 'Платформа', 'Язык интерфейса', 'Язык озвучки', 'Таблетка', 'ОС', 'Процессор', 'Оперативная память', 'Видеокарта']
+    listProp = ['Год выпуска', 'Жанр', 'Разработчик', 'Издательство', 'Платформа', 'Язык интерфейса', 'Язык озвучки', 'Таблетка', 'ОС', 'Процессор', 'Оперативная память', 'Видеокарта', 'Дата выхода']
     worss = []
     for listr in string:
       if listr.find(':') == -1:
@@ -31,7 +33,9 @@ class GameParse: # Page game with all data
     return self.gameHtml.select_one(".module-title:first-child > h1").text # string name game
 
   def getDate(self):
-    return self.dateGame
+    reDate = r'[0-9]{4}-[0-9]{2}'
+    reRes = re.findall(reDate, self.getImg())[0]
+    return self.dateGame or reRes # Year of release
 
 
   def getMedia(self):
@@ -48,20 +52,24 @@ class GameParse: # Page game with all data
     return [item['src'] for item in screensh] # list link screenshot
   
 
-  def getDescription(self):
+  def getDescription(self, oncetext=False):
     pattern = r'(?<=blockinfo">).+(?=<div class="clr")'
     desc = str(self.gameHtml.find_all("div", "blockinfo")[0])
-    descstring = desc.replace("\n","")
+    descstring = desc.replace("\n"," ")
+    if(oncetext):
+      parseOnce = bs4.BeautifulSoup(re.findall(pattern, descstring)[0], "html5lib")
+      return parseOnce.get_text()
     return re.findall(pattern, descstring) # description string
 
   def getViews(self):
     return self.gameHtml.select_one("#article-film-full-info span:last-child").text
 
 
-  def getSpecify(self):
+  def getSpecify(self, json=True):
     spec = self.gameHtml.select_one("#dle-content > div:nth-child(3)")
     spec.select(".exampleone")[0].extract()
     if spec.find('img'):
+      self.gameStatus.append("nospecification")
       return None
     else:
       specification = ""
@@ -73,12 +81,13 @@ class GameParse: # Page game with all data
       html_spec.body.unwrap()
       html_spec.head.unwrap()
       html_spec.html.unwrap()
-      return json.dumps(self.dictparse(self.listParse(html_spec)), ensure_ascii=False) # system requirements json
+      return json.dumps(self.dictparse(self.listParse(html_spec)), ensure_ascii=False) if json else self.dictparse(self.listParse(html_spec)) # system requirements json
 
   def getFile(self):
     sizelist = []
     filelist = []
     if self.gameHtml.find(class_="online"):
+      self.gameStatus.append("online")
       return None
     else:
       fileurl = self.gameHtml.select('.torrent')
@@ -88,4 +97,17 @@ class GameParse: # Page game with all data
       for file in fileurl:
         filelist.append("https://s1.torrents-igruha.org/engine/download.php?id="+file['href'].split('=')[-1])
       return json.dumps(dict(zip(filelist,sizelist)), ensure_ascii=False) # files size, link json
+  
+
+  def getAllData(self):
+    self.file = self.getFile()
+    self.specification = self.getSpecify()
+    self.views = self.getViews()
+    self.description = self.getDescription()
+    self.media = self.getMedia()
+    self.date = self.getDate()
+    self.game = self.getName()
+    self.image = self.getImg()
+    return self.game, self.image, self.description, self.file, self.media, self.specification, self.date, self.views, ",".join(self.gameStatus)
+
 
