@@ -21,8 +21,8 @@ class ControlParser(Thread):
     for linkGame in listPage.listAllGame:
       gameParse = GP(linkGame)
       gameParse.getAllData()
-      sendGameData = SD(linkGame)
-      sendGameData.saveNewGame()
+      # sendGameData = SD(linkGame)
+      # sendGameData.saveNewGame()
 
     print("Ended work thread #"+str(self.numTh))
 

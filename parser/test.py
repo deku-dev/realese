@@ -9,12 +9,14 @@ from nltk import word_tokenize
 from nltk import Text
 from nltk.probability import FreqDist
 from nltk.corpus import stopwords
+from summa.summarizer import summarize
 
 from rutermextract import TermExtractor
 
 from listgame import ListGame as LG
 from gameparse import GameParse as GP
 from senddata import SendData as SD
+
 
 import bs4
 import parsel
@@ -68,11 +70,6 @@ def analyzeText(text):
   specChars = string.punctuation + '\n"«»\t'
   text = removeSpecChar(text, specChars)
   text = removeSpecChar(text, string.digits)
-  text_tokens = word_tokenize(text)
-  text = Text(text_tokens)
-  fdist = FreqDist(text)
-  # russian_stopwords = stopwords.words("russian")
-  print("%10d%s" % (len(text_tokens),fdist.most_common(5)))
   return text
 # with open('testdesc.txt',"w",encoding="utf8") as file:
 #   file.write(text)
@@ -117,4 +114,9 @@ def test():
 def test2(one, two, three):
   print(two, one, three)
 
-test2(*test())
+testtext = "Частотный анализ является одним из сравнительно простых методов обработки текста на естественном языке (NLP). Его результатом является список слов, наиболее часто встречающихся в тексте. Частотный анализ также позволяет получить представление о тематике и основных понятиях текста. Визуализировать его результаты удобно в виде «облака слов». Эта диаграмма содержит слова, размер шрифта которых отражает их популярность в тексте.Обработку текста на естественном языке удобно производить с помощью Python, поскольку он является достаточно высокоуровневым инструментом программирования, имеет развитую инфраструктуру, хорошо зарекомендовал себя в сфере анализа данных и машинного обучения. Сообществом разработано несколько библиотек и фреймворков для решения задач NLP на Python. Мы в своей работе будем использовать интерактивный веб-инструмент для разработки python-скриптов Jupyter Notebook, библиотеку NLTK для анализа текста и библиотеку wordcloud для построения облака слов.В сети представлено достаточно большое количество материала по теме анализа текста, но во многих статьях (в том числе русскоязычных) предлагается анализировать текст на английском языке. Анализ русского текста имеет некоторую специфику применения инструментария NLP. В качестве примера рассмотрим частотный анализ текста повести «Метель» А. С. Пушкина."
+# print(text)
+print(summarize(testtext, ratio=0.2))
+# print(summarize(text, words=50, language='russian'))
+
+
