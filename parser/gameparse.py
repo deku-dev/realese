@@ -1,4 +1,4 @@
-import re, bs4, requests, json
+import re, bs4, requests, json, datetime
 class GameParse: # Page game with all data
   def __init__(self, page):
     self.gameHtml = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
@@ -65,7 +65,7 @@ class GameParse: # Page game with all data
     return self.gameHtml.select_one("#article-film-full-info span:last-child").text
 
 
-  def getSpecify(self, json=True):
+  def getSpecify(self, jsons=True):
     spec = self.gameHtml.select_one("#dle-content > div:nth-child(3)")
     spec.select(".exampleone")[0].extract()
     if spec.find('img'):
@@ -105,7 +105,7 @@ class GameParse: # Page game with all data
     self.views = self.getViews()
     self.description = self.getDescription()
     self.media = self.getMedia()
-    self.date = self.getDate()
+    self.date = datetime.datetime.strptime(self.getDate(), "%Y-%m").strftime("%Y-%m-%d")
     self.game = self.getName()
     self.image = self.getImg()
     return self.game, self.image, self.description, self.file, self.media, self.specification, self.date, self.views, ",".join(self.gameStatus)

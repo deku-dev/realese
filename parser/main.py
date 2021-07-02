@@ -6,58 +6,68 @@ from var_dump import var_dump
 from threading import Thread
 import timing
 import analyzer
+import common
 
-class ControlParser(Thread):
-  def __init__(self, pageCat, numThread):
-    Thread.__init__(self)
-    self.catlink = pageCat
-    self.numTh = numThread
+from colorama import init, Fore, Back, Style
 
+init(autoreset=True) 
 
-  def run(self):
-    """Запуск потока"""
-    listPage = LG(self.catlink)
-    listPage.getAllGame()
-    for linkGame in listPage.listAllGame:
-      gameParse = GP(linkGame)
-      gameParse.getAllData()
-      # sendGameData = SD(linkGame)
-      # sendGameData.saveNewGame()
+connect = mysqlconn.getConnection()
+try:
+  with connect.cursor() as cursor:
+    class ControlParser(Thread):
+      global connect, cursor
+      def __init__(self, pageCat, numThread):
+        Thread.__init__(self)
+        self.catlink = pageCat
+        self.numTh = numThread
 
-    print("Ended work thread #"+str(self.numTh))
+      def run(self):
+        """Запуск потока"""
+        print(Fore.GREEN+"Thread #"+str(self.numTh)+" started")
+        listPage = LG(self.catlink)
+        listPage.getAllGame()
+        var_dump(listPage.listGame)
+        for linkGame in listPage.listAllGame:
+          print(linkGame)
+          gameParse = GP(linkGame)
+          sendGameData = SD(connect, cursor, linkGame)
+          sendGameData.saveNewGame(*gameParse.getAllData())
+          sendGameData.setCategory(self.catlink)
+        print(Fore.BLUE+"Ended work thread #"+str(self.numTh))
 
+    def createThread(pagelist):
+      threads = []
+      numThread = 0
+      for catLink in pagelist:
+        threads.append(ControlParser(catLink, numThread))
+        numThread += 1
+      for t in threads:
+        t.start()
+      for t in threads:
+        t.join()
 
-def getCategory(page):
-  catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
-  catList = catPage.select("#menuigruha li a")
-  return [item["href"] for item in catList]
-
-def createThread(pagelist):
-  numThread = 0
-  for catLink in pagelist:
-    numThread += 1
-    print("Thread #"+str(numThread)+" started")
-    my_thread = ControlParser(catLink, numThread)
-    my_thread.start()
-
-def main():
-  allCateg = getCategory('https://s5.torents-igruha.org/')
-  createThread(allCateg)
-  analyzer.main()
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def main():
+      global connect, cursor
+      # connToBase = SD(connect, cursor)
+      # connToBase.formatDatabase()
+      # allCateg = common.getCategory('https://s5.torents-igruha.org/')
+      # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
+      # createThread(allCateg)
+      analyzer.main()
 
 
+    main()
+finally:
+  connect.close()
 
-main()
+
+
+
+
+
+
+
+
+
+

@@ -17,7 +17,9 @@ from listgame import ListGame as LG
 from gameparse import GameParse as GP
 from senddata import SendData as SD
 
+from colorama import init, Fore, Back, Style
 
+import time
 import bs4
 import parsel
 import pymysql
@@ -29,7 +31,11 @@ import io
 import string
 import pickle
 import os
+import datetime
 import glob
+import ctypes
+kernel32 = ctypes.windll.kernel32
+kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
 def getCategory(page):
   catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
@@ -114,9 +120,19 @@ def test():
 def test2(one, two, three):
   print(two, one, three)
 
-testtext = "Частотный анализ является одним из сравнительно простых методов обработки текста на естественном языке (NLP). Его результатом является список слов, наиболее часто встречающихся в тексте. Частотный анализ также позволяет получить представление о тематике и основных понятиях текста. Визуализировать его результаты удобно в виде «облака слов». Эта диаграмма содержит слова, размер шрифта которых отражает их популярность в тексте.Обработку текста на естественном языке удобно производить с помощью Python, поскольку он является достаточно высокоуровневым инструментом программирования, имеет развитую инфраструктуру, хорошо зарекомендовал себя в сфере анализа данных и машинного обучения. Сообществом разработано несколько библиотек и фреймворков для решения задач NLP на Python. Мы в своей работе будем использовать интерактивный веб-инструмент для разработки python-скриптов Jupyter Notebook, библиотеку NLTK для анализа текста и библиотеку wordcloud для построения облака слов.В сети представлено достаточно большое количество материала по теме анализа текста, но во многих статьях (в том числе русскоязычных) предлагается анализировать текст на английском языке. Анализ русского текста имеет некоторую специфику применения инструментария NLP. В качестве примера рассмотрим частотный анализ текста повести «Метель» А. С. Пушкина."
-# print(text)
-print(summarize(testtext, ratio=0.2))
-# print(summarize(text, words=50, language='russian'))
+init(autoreset=True) 
+date = "2030-05"
+# dates = time.strftime("%Y-%m-%d", time.strptime(date, "%Y-%m"))
 
+reqt = "SELECT `id` FROM `torrent_link` WHERE `link`=%s"
+connect = mysqlconn.getConnection()
+try:
+  with connect.cursor() as cursor:
+    cursor.execute(reqt, ("https://s5.torednts-igruha.org/1405-the-godfather-ii.html"))
+    result = cursor.fetchone()
+    connect.commit()
+    if result:
+      print(result)
 
+finally:
+  connect.close()

@@ -1,5 +1,5 @@
 # coding=utf8
-import requests, bs4, re, string, os
+import requests, bs4, re, string, os, mysqlconn, pymysql
 
 from listgame import ListGame as LG
 from gameparse import GameParse as GP
@@ -15,6 +15,11 @@ from rutermextract import TermExtractor
 import pickle
 import timing
 import heapq
+import common
+
+from colorama import init, Fore, Back, Style
+
+init(autoreset=True) 
 
 counterTe = 0
 counterTa = 0
@@ -29,10 +34,7 @@ def loadObj(name):
   with open('obj/' + name + '.pkl', 'rb') as f:
     return pickle.load(f)
 
-def getCategory(page):
-  catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
-  catList = catPage.select("#menuigruha li a")
-  return [item["href"] for item in catList]
+
 
 def removeTags(text):
   text = text.lower()
@@ -60,7 +62,7 @@ def addInOneFile(thread):
       os.remove("file/description"+str(thread)+".txt")
   
 def termAllText():
-  with open("file/description.txt", "r", encoding="utf8") as f:
+  with open("file/description.txt", "w+", encoding="utf8") as f:
     text = f.read()
     termExtr = TermExtractor()
     termDict = { term.normalized: 1 / term.count for term in termExtr(text) }
@@ -77,14 +79,20 @@ class ControlParser(Thread):
 
   def run(self):
     """Запуск потока"""
-    print("Thread #"+str(self.numTh)+" started")
-    if(self.mode):
-      self.taggingText()
-    else:
-      self.teachText()
+    self.connect = mysqlconn.getConnection()
+    try:
+      with self.connect.cursor() as self.cursor:
+        print(Fore.GREEN+"Thread #"+str(self.numTh)+" started")
+        if(self.mode):
+          self.taggingText()
+        else:
+          self.teachText()
+    finally:
+      self.connect.close()
+    
   
   def teachText(self):
-    self.listPage.getlistlink()
+    self.listPage.getlistlink(bs4.BeautifulSoup(requests.get(self.catLink).text, "html5lib"))
     global counterTe
     with open("file/description"+str(self.numTh)+".txt", "w", encoding='utf8') as f:
       
@@ -95,30 +103,30 @@ class ControlParser(Thread):
         print("%-4d%-75s%-8d%3s" % (counterTe, gameParse.getName(), len(desc), self.numTh))
         counterTe += 1
         f.write(analyzeText(desc))
-    print("Ended work thread #"+str(self.numTh))
+    print(Fore.BLUE+"Ended work thread #"+str(self.numTh))
 
   def taggingText(self):
     global counterTa
-    self.listPage.getlistlink()
+    self.listPage.getlistlink(bs4.BeautifulSoup(requests.get(self.catLink).text, "html5lib"))
     counter = 0
     for linkGame in self.listPage.listGame:
       gameParse = GP(linkGame)
       desc = gameParse.getDescription(True)
       name = gameParse.getName()
       tagsComp = self.termOneText(desc)
-      print(tagsComp, name)
-      sendTags = SD(linkGame)
+      print(name)
+      sendTags = SD(self.connect, self.cursor, linkGame)
       sendTags.setTags(tagsComp, name, ".".join(self.shortDesc(desc)))
       counterTa += 1
       counter += 1
-      print("%-75s%-8d%3d%5d" % (gameParse.getName(), len(tagsComp), self.numTh, counterTa))
-    print("Ended work thread #"+str(self.numTh)+" Game addet "+str(counter))
+      # print("%-75s%-8d%3d%5d" % (gameParse.getName(), len(tagsComp), self.numTh, counterTa))
+    print(Fore.BLUE+"Ended work thread #"+str(self.numTh)+" Game addet "+str(counter))
 
   def termOneText(self,text):
     wordFreq = loadObj("terms")
     termExtr = TermExtractor()
     listWordTerm = [str(termer) for termer in termExtr(text, weight=lambda term: wordFreq.get(term.normalized, 1.0) * term.count)]
-    print(listWordTerm[:10])
+    # print(listWordTerm[:10])
     return ",".join(listWordTerm)
 
   def shortDesc(self, text):
@@ -146,9 +154,6 @@ class ControlParser(Thread):
     for key in word2count.keys():
       word2count[key] = word2count[key] / max(word2count.values())  
     return heapq.nlargest(3, sent2score, key=sent2score.get)
-    
-
-
 
 def createThread(pagelist, mode=False):
   threads = []
@@ -166,6 +171,9 @@ def createThread(pagelist, mode=False):
 
 def main():
   pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,125)]
-  print("Started program")
-  createThread(pageSite)
+  pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
+  print(Back.GREEN+Fore.BLACK+"Started program")
+  # createThread(pageSite)
   createThread(pageSite, True)
+
+main()
