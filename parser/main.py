@@ -46,14 +46,15 @@ try:
         t.start()
       for t in threads:
         t.join()
+      print(Back.GREEN+Fore.BLACK+"End all thread in main")
 
     def main():
       global connect, cursor
-      # connToBase = SD(connect, cursor)
-      # connToBase.formatDatabase()
-      # allCateg = common.getCategory('https://s5.torents-igruha.org/')
-      # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
-      # createThread(allCateg)
+      connToBase = SD(connect, cursor)
+      connToBase.formatDatabase()
+      allCateg = common.getCategory('https://s5.torents-igruha.org/')
+      allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
+      createThread(allCateg)
       analyzer.main()
 
 

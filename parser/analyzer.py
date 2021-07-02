@@ -173,7 +173,7 @@ def main():
   pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,125)]
   pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
   print(Back.GREEN+Fore.BLACK+"Started program")
-  # createThread(pageSite)
+  createThread(pageSite)
   createThread(pageSite, True)
 
 main()
