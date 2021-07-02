@@ -27,7 +27,7 @@ try:
         print(Fore.GREEN+"Thread #"+str(self.numTh)+" started")
         listPage = LG(self.catlink)
         listPage.getAllGame()
-        var_dump(listPage.listGame)
+        # var_dump(listPage.listGame)
         for linkGame in listPage.listAllGame:
           print(linkGame)
           gameParse = GP(linkGame)
@@ -55,6 +55,8 @@ try:
       allCateg = common.getCategory('https://s5.torents-igruha.org/')
       allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
       createThread(allCateg)
+
+      print(Back.GREEN+Fore.BLACK+"TESTING ...")
       analyzer.main()
 
 

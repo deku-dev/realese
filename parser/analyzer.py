@@ -175,5 +175,3 @@ def main():
   print(Back.GREEN+Fore.BLACK+"Started program")
   createThread(pageSite)
   createThread(pageSite, True)
-
-main()

@@ -44,6 +44,8 @@ class SendData:
       "DELETE FROM `user_hash` WHERE 1":None,
       "DELETE FROM `user_views` WHERE 1":None,
       "DELETE FROM `views` WHERE 1":None,
+      "ALTER TABLE `game` AUTO_INCREMENT = 1;":None,
+      "ALTER TABLE `game_tags` AUTO_INCREMENT = 1;":None
     }
     self.multiRequest(reqFormat)
 
