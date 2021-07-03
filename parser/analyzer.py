@@ -56,10 +56,11 @@ def addInOneFile(thread):
   with open("file/description.txt", "w", encoding="utf8") as file:
     for thread in range(0, thread):
       with open("file/description"+str(thread)+".txt", "r", encoding='utf8') as f:
-        print(thread)
+        # print(thread)
         textFile = f.read()
       file.write(textFile)
       os.remove("file/description"+str(thread)+".txt")
+    print(Back.RED+Fore.BLACK+"Add in ONE file end")
   
 def termAllText():
   with open("file/description.txt", "w+", encoding="utf8") as f:
@@ -82,7 +83,7 @@ class ControlParser(Thread):
     self.connect = mysqlconn.getConnection()
     try:
       with self.connect.cursor() as self.cursor:
-        print(Fore.GREEN+"Thread #"+str(self.numTh)+" started")
+        print(Back.GREEN+Fore.BLACK+"Thread #"+str(self.numTh)+" started")
         if(self.mode):
           self.taggingText()
         else:
@@ -103,7 +104,7 @@ class ControlParser(Thread):
         print("%-4d%-75s%-8d%3s" % (counterTe, gameParse.getName(), len(desc), self.numTh))
         counterTe += 1
         f.write(analyzeText(desc))
-    print(Fore.BLUE+"Ended work thread #"+str(self.numTh))
+    print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh))
 
   def taggingText(self):
     global counterTa
@@ -120,7 +121,7 @@ class ControlParser(Thread):
       counterTa += 1
       counter += 1
       # print("%-75s%-8d%3d%5d" % (gameParse.getName(), len(tagsComp), self.numTh, counterTa))
-    print(Fore.BLUE+"Ended work thread #"+str(self.numTh)+" Game addet "+str(counter))
+    print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh)+" Game addet "+str(counter))
 
   def termOneText(self,text):
     wordFreq = loadObj("terms")
@@ -160,7 +161,6 @@ def createThread(pagelist, mode=False):
   numThread = 0
   for pageLink in pagelist:
     threads.append(ControlParser(pageLink, numThread, mode))
-    print("%-80s%3d"% (pageLink, numThread))
     numThread += 1
   for t in threads:
     t.start()
@@ -170,8 +170,8 @@ def createThread(pagelist, mode=False):
   mode or addInOneFile(numThread)
 
 def main():
+  print(Back.GREEN+Fore.BLACK+"Started program analyzer.py")
   pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,125)]
   # pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
-  print(Back.GREEN+Fore.BLACK+"Started program")
   createThread(pageSite)
   createThread(pageSite, True)

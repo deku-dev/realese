@@ -24,16 +24,16 @@ try:
 
       def run(self):
         """Запуск потока"""
-        print(Fore.GREEN+"Thread #"+str(self.numTh)+" started")
+        print(Back.GREEN+Fore.BLACK+"Thread #"+str(self.numTh)+" started")
         listPage = LG(self.catlink)
         listPage.getAllGame()
-        # var_dump(listPage.listGame)
         for linkGame in listPage.listAllGame:
           sendGameData = SD(connect, cursor, linkGame)
           sendGameData.setCategory(self.catlink)
-        print(Fore.BLUE+"Ended work thread #"+str(self.numTh))
+        print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh))
 
     def createThread(pagelist):
+      print("Started primary script")
       threads = []
       numThread = 0
       for catLink in pagelist:
@@ -43,7 +43,7 @@ try:
         t.start()
       for t in threads:
         t.join()
-      print(Back.GREEN+Fore.BLACK+"End all thread in main")
+      print(Back.RED+Fore.BLACK+"End all thread in main")
 
     def main():
       global connect, cursor
@@ -54,7 +54,7 @@ try:
       # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
       createThread(allCateg)
 
-      print(Back.GREEN+Fore.BLACK+"TESTING ...")
+      # print(Back.GREEN+Fore.BLACK+"TESTING ...")
 
 
     main()
