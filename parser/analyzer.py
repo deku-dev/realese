@@ -1,6 +1,6 @@
 # coding=utf8
 import requests, bs4, re, string, os, mysqlconn, pymysql
-
+import logging
 from listgame import ListGame as LG
 from gameparse import GameParse as GP
 from senddata import SendData as SD
@@ -83,7 +83,7 @@ class ControlParser(Thread):
     self.connect = mysqlconn.getConnection()
     try:
       with self.connect.cursor() as self.cursor:
-        print(Back.GREEN+Fore.BLACK+"Thread #"+str(self.numTh)+" started")
+        print(Back.GREEN+Fore.BLACK+"Thread analyzer #"+str(self.numTh)+" started")
         if(self.mode):
           self.taggingText()
         else:
@@ -101,10 +101,10 @@ class ControlParser(Thread):
         
         gameParse = GP(linkGame)
         desc = gameParse.getDescription(True)
-        print("%-4d%-75s%-8d%3s" % (counterTe, gameParse.getName(), len(desc), self.numTh))
+        # print("%-4d%-75s%-8d%3s" % (counterTe, gameParse.getName(), len(desc), self.numTh))
         counterTe += 1
         f.write(analyzeText(desc))
-    print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh))
+    print(Back.RED+Fore.BLACK+"Ended work thread teach #"+str(self.numTh))
 
   def taggingText(self):
     global counterTa
@@ -171,7 +171,7 @@ def createThread(pagelist, mode=False):
 
 def main():
   print(Back.GREEN+Fore.BLACK+"Started program analyzer.py")
-  pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,125)]
-  # pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
+  pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,130)]
+  pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
   createThread(pageSite)
   createThread(pageSite, True)

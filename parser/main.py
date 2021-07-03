@@ -1,4 +1,4 @@
-import json, requests, bs4, re, mysqlconn, pymysql, sys
+import json, requests, bs4, re, mysqlconn, pymysql, sys, traceback
 from listgame import ListGame as LG
 from gameparse import GameParse as GP
 from senddata import SendData as SD
@@ -7,6 +7,8 @@ from threading import Thread
 import timing
 import analyzer
 import common
+import logging
+
 
 from colorama import init, Fore, Back, Style
 
@@ -33,7 +35,7 @@ try:
         print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh))
 
     def createThread(pagelist):
-      print("Started primary script")
+      
       threads = []
       numThread = 0
       for catLink in pagelist:
@@ -46,18 +48,28 @@ try:
       print(Back.RED+Fore.BLACK+"End all thread in main")
 
     def main():
-      global connect, cursor
-      connToBase = SD(connect, cursor)
-      connToBase.formatDatabase()
-      analyzer.main()
-      allCateg = common.getCategory('https://s5.torents-igruha.org/')
-      # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
-      createThread(allCateg)
+      try:
+        logging.config.fileConfig('/path/to/logging.ini',disable_existing_loggers=False)
+        logger = logging.getLogger(__name__)
+        global connect, cursor
+        print("Started primary script")
+        connToBase = SD(connect, cursor)
+        connToBase.formatDatabase()
+        analyzer.main()
+        allCateg = common.getCategory('https://s5.torents-igruha.org/')
+        # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
+        createThread(allCateg)
 
-      # print(Back.GREEN+Fore.BLACK+"TESTING ...")
+        # print(Back.GREEN+Fore.BLACK+"TESTING ...")
+      except OSError as e:
+        logger.error(e, exc_info=True)
+      except:
+        logger.error("uncaught exception: %s", traceback.format_exc())
+        return False
 
+    if __name__ == '__main__':
+      main()
 
-    main()
 finally:
   connect.close()
 

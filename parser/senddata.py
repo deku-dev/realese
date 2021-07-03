@@ -1,5 +1,5 @@
 import pymysql, mysqlconn
-
+import logging
 class SendData:
   def __init__(self, connect, cursor, pageGame=None):
     self.cursor = cursor
@@ -48,14 +48,14 @@ class SendData:
       "ALTER TABLE `game_tags` AUTO_INCREMENT = 1;":None
     }
     self.multiRequest(reqFormat)
+    
 
   def checkCategory(self, linkCategory):
     reqCat = "SELECT `cat_id` FROM `category` WHERE `cat_link`=%s"
     self.idCat = self.sendRequest(reqCat, (linkCategory))["cat_id"]
 
   def setCategory(self, linkCategory):
-    if self.idCat is None:
-      self.checkCategory(linkCategory)
+    self.checkCategory(linkCategory)
     reqSetcat = "INSERT INTO `cat_game`(`game_id`, `cat_id`) VALUES (%s,%s)"
     self.sendRequest(reqSetcat, (self.id, self.idCat))
 

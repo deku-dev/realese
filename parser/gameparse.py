@@ -1,4 +1,5 @@
 import re, bs4, requests, json, datetime
+import logging
 class GameParse: # Page game with all data
   def __init__(self, page):
     self.gameHtml = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
