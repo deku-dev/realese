@@ -77,7 +77,7 @@ class SendData:
     if self.id:
       self.id = self.id['id']
       return (self.id, 1)
-    return (self.id, 0)
+    return ("NULL", 0)
   
   def updateDesc(self, desc): # Update description
     upDesc = {"UPDATE `fulldescip` SET `description`=%s WHERE `game_id`=%s":(desc, self.id)}
@@ -103,6 +103,6 @@ class SendData:
     self.multiRequest(reqLang)
 
   def setTags(self, tags, name, shortDes):
-    ids = self.checkGame()
-    reqTags = {"INSERT INTO `game_tags` (`id`, `name`, `meta-desc`, `meta-tags`, `exist`) VALUES (%s, %s, %s, %s, %s);":(ids[0], name, shortDes, tags,ids[1])}
+    reqTags = {"INSERT INTO `game_tags` (`id`, `name`, `meta-desc`, `meta-tags`) VALUES (%s, %s, %s, %s);":(self.id, name, shortDes, tags)}
     self.multiRequest(reqTags)
+    print("Set tags %-8d %-60s"%(self.id,name))

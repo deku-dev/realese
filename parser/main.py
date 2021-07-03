@@ -29,10 +29,7 @@ try:
         listPage.getAllGame()
         # var_dump(listPage.listGame)
         for linkGame in listPage.listAllGame:
-          print(linkGame)
-          gameParse = GP(linkGame)
           sendGameData = SD(connect, cursor, linkGame)
-          sendGameData.saveNewGame(*gameParse.getAllData())
           sendGameData.setCategory(self.catlink)
         print(Fore.BLUE+"Ended work thread #"+str(self.numTh))
 
@@ -52,18 +49,17 @@ try:
       global connect, cursor
       connToBase = SD(connect, cursor)
       connToBase.formatDatabase()
+      analyzer.main()
       allCateg = common.getCategory('https://s5.torents-igruha.org/')
-      allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
+      # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
       createThread(allCateg)
 
       print(Back.GREEN+Fore.BLACK+"TESTING ...")
-      analyzer.main()
 
 
     main()
 finally:
   connect.close()
-
 
 
 

@@ -114,8 +114,8 @@ class ControlParser(Thread):
       desc = gameParse.getDescription(True)
       name = gameParse.getName()
       tagsComp = self.termOneText(desc)
-      print(name)
       sendTags = SD(self.connect, self.cursor, linkGame)
+      sendTags.saveNewGame(*gameParse.getAllData())
       sendTags.setTags(tagsComp, name, ".".join(self.shortDesc(desc)))
       counterTa += 1
       counter += 1
@@ -171,7 +171,7 @@ def createThread(pagelist, mode=False):
 
 def main():
   pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,125)]
-  pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
+  # pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
   print(Back.GREEN+Fore.BLACK+"Started program")
   createThread(pageSite)
   createThread(pageSite, True)
