@@ -1,0 +1,256 @@
+2021-07-05 00:25:04,561 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:25:04,833 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:25:04,833 analyzer.py:run:90 - Thread-1 - INFO:Mode teachText text start
+2021-07-05 00:25:05,416 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Frozenheim
+2021-07-05 00:25:05,732 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Valheim
+2021-07-05 00:25:06,047 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Grounded
+2021-07-05 00:25:06,346 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Wreckfest
+2021-07-05 00:25:06,594 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Retro Commander
+2021-07-05 00:25:06,838 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -RONIN: Two Souls
+2021-07-05 00:25:07,098 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Mini Crafty
+2021-07-05 00:25:07,367 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Wing of Darkness
+2021-07-05 00:25:07,612 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -The Magnificent Trufflepigs
+2021-07-05 00:25:07,879 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Secrets of Grindea
+2021-07-05 00:25:08,129 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Mind Scanners
+2021-07-05 00:25:08,378 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Pro Cycling Manager 2021
+2021-07-05 00:25:08,643 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Eroico
+2021-07-05 00:25:08,904 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Sunblaze
+2021-07-05 00:25:09,219 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Drox Operative 2
+2021-07-05 00:25:09,490 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Airships Conquer the Skies
+2021-07-05 00:25:09,796 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Foundation
+2021-07-05 00:25:10,092 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Embark
+2021-07-05 00:25:10,380 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Doki Doki Literature Club Plus!
+2021-07-05 00:25:10,649 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Doki Doki Literature Club!
+2021-07-05 00:25:11,000 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -BeamNG DRIVE
+2021-07-05 00:25:11,326 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Borderlands 3
+2021-07-05 00:25:11,603 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Brigador Up-Armored Edition
+2021-07-05 00:25:11,869 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Nanotale - Typing Chronicles (The Sunken Caves)
+2021-07-05 00:25:12,140 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Sins of a Solar Empire: Trinity
+2021-07-05 00:25:12,421 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Speed Limit
+2021-07-05 00:25:12,729 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Northgard
+2021-07-05 00:25:13,028 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -House Flipper
+2021-07-05 00:25:13,344 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -ATOM RPG
+2021-07-05 00:25:13,652 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Prison Architect
+2021-07-05 00:25:13,951 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Loop Hero
+2021-07-05 00:25:14,250 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Raft (ะเ๔๒)
+2021-07-05 00:25:14,555 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -GreedFall - Gold Edition
+2021-07-05 00:25:14,857 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -TheHunter Call of the Wild
+2021-07-05 00:25:15,174 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Sea of Thieves
+2021-07-05 00:25:15,431 analyzer.py:teachText:104 - Thread-1 - INFO:Teach game name -Shipwreck Escape
+2021-07-05 00:25:15,431 analyzer.py:teachText:106 - Thread-1 - INFO:Ended work thread teach #1
+2021-07-05 00:25:15,550 wrapper.py:__init__:16 - MainThread - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:25:15,577 wrapper.py:__init__:20 - MainThread - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:25:15,581 analyzer.py:addInOneFile:62 - MainThread - INFO:Add in ONE file end
+2021-07-05 00:25:15,848 analyzer.py:run:85 - Thread-2 - INFO:Thread analyzer #1 started
+2021-07-05 00:25:15,848 analyzer.py:run:87 - Thread-2 - INFO:Mode tagging text start
+2021-07-05 00:25:16,431 wrapper.py:__init__:16 - Thread-2 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:25:16,456 wrapper.py:__init__:20 - Thread-2 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:25:16,533 gameparse.py:getAllData:112 - Thread-2 - INFO:Getter all data for Frozenheim
+2021-07-05 00:27:32,522 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:27:32,759 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:27:32,759 analyzer.py:run:87 - Thread-1 - INFO:Mode tagging text start
+2021-07-05 00:27:33,381 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:27:33,409 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:27:33,487 gameparse.py:getAllData:113 - Thread-1 - INFO:Getter all data for Frozenheim
+2021-07-05 00:28:28,046 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:28:28,329 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:28:28,329 analyzer.py:run:87 - Thread-1 - INFO:Mode tagging text start
+2021-07-05 00:28:28,988 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:28:29,015 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:28:29,092 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Frozenheim
+2021-07-05 00:29:28,548 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:29:28,839 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:29:28,839 analyzer.py:run:87 - Thread-1 - INFO:Mode tagging text start
+2021-07-05 00:29:29,511 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:29:29,538 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:29:29,615 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Frozenheim
+2021-07-05 00:30:14,486 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:30:14,746 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:30:14,746 analyzer.py:run:87 - Thread-1 - INFO:Mode tagging text start
+2021-07-05 00:30:15,401 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:30:15,428 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:30:15,507 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Frozenheim
+2021-07-05 00:32:39,658 analyzer.py:main:168 - MainThread - INFO:Started program analyzer.py
+2021-07-05 00:32:39,931 analyzer.py:run:85 - Thread-1 - INFO:Thread analyzer #1 started
+2021-07-05 00:32:39,931 analyzer.py:run:87 - Thread-1 - INFO:Mode tagging text start
+2021-07-05 00:32:40,595 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:40,621 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:40,700 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Frozenheim
+2021-07-05 00:32:40,701 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert       9 Frozenheim
+2021-07-05 00:32:40,770 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 9        Frozenheim                                                  
+2021-07-05 00:32:41,095 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:41,120 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:41,187 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Valheim
+2021-07-05 00:32:41,189 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      10 Valheim
+2021-07-05 00:32:41,294 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 10       Valheim                                                     
+2021-07-05 00:32:41,610 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:41,636 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:41,692 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Grounded
+2021-07-05 00:32:41,693 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      11 Grounded
+2021-07-05 00:32:41,744 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 11       Grounded                                                    
+2021-07-05 00:32:42,070 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:42,095 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:42,160 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Wreckfest
+2021-07-05 00:32:42,161 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      12 Wreckfest
+2021-07-05 00:32:42,210 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 12       Wreckfest                                                   
+2021-07-05 00:32:42,483 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:42,548 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:42,611 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Retro Commander
+2021-07-05 00:32:42,612 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      13 Retro Commander
+2021-07-05 00:32:42,661 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 13       Retro Commander                                             
+2021-07-05 00:32:42,934 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:42,960 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:43,027 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for RONIN: Two Souls
+2021-07-05 00:32:43,028 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      14 RONIN: Two Souls
+2021-07-05 00:32:43,086 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 14       RONIN: Two Souls                                            
+2021-07-05 00:32:43,362 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:43,388 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:43,448 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Mini Crafty
+2021-07-05 00:32:43,449 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      15 Mini Crafty
+2021-07-05 00:32:43,503 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 15       Mini Crafty                                                 
+2021-07-05 00:32:43,780 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:43,806 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:43,864 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Wing of Darkness
+2021-07-05 00:32:43,956 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      16 Wing of Darkness
+2021-07-05 00:32:44,211 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 16       Wing of Darkness                                            
+2021-07-05 00:32:44,481 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:44,506 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:44,576 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for The Magnificent Trufflepigs
+2021-07-05 00:32:44,577 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      17 The Magnificent Trufflepigs
+2021-07-05 00:32:44,803 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 17       The Magnificent Trufflepigs                                 
+2021-07-05 00:32:45,090 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:45,159 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:45,219 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Secrets of Grindea
+2021-07-05 00:32:45,221 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      18 Secrets of Grindea
+2021-07-05 00:32:45,269 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 18       Secrets of Grindea                                          
+2021-07-05 00:32:45,545 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:45,569 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:45,626 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Mind Scanners
+2021-07-05 00:32:45,627 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      19 Mind Scanners
+2021-07-05 00:32:45,686 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 19       Mind Scanners                                               
+2021-07-05 00:32:45,965 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:45,990 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:46,052 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Pro Cycling Manager 2021
+2021-07-05 00:32:46,053 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      20 Pro Cycling Manager 2021
+2021-07-05 00:32:46,110 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 20       Pro Cycling Manager 2021                                    
+2021-07-05 00:32:46,404 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:46,430 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:46,495 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Eroico
+2021-07-05 00:32:46,496 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      21 Eroico
+2021-07-05 00:32:46,552 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 21       Eroico                                                      
+2021-07-05 00:32:46,834 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:46,860 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:46,917 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Sunblaze
+2021-07-05 00:32:46,918 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      22 Sunblaze
+2021-07-05 00:32:46,969 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 22       Sunblaze                                                    
+2021-07-05 00:32:47,345 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:47,370 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:47,458 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Drox Operative 2
+2021-07-05 00:32:47,460 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      23 Drox Operative 2
+2021-07-05 00:32:47,527 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 23       Drox Operative 2                                            
+2021-07-05 00:32:47,828 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:47,853 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:47,920 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Airships Conquer the Skies
+2021-07-05 00:32:47,921 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      24 Airships Conquer the Skies
+2021-07-05 00:32:47,977 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 24       Airships Conquer the Skies                                  
+2021-07-05 00:32:48,297 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:48,322 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:48,384 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Foundation
+2021-07-05 00:32:48,385 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      25 Foundation
+2021-07-05 00:32:48,444 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 25       Foundation                                                  
+2021-07-05 00:32:48,770 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:48,796 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:48,876 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Embark
+2021-07-05 00:32:48,928 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      26 Embark
+2021-07-05 00:32:48,986 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 26       Embark                                                      
+2021-07-05 00:32:49,284 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:49,350 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:49,413 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Doki Doki Literature Club Plus!
+2021-07-05 00:32:49,414 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      27 Doki Doki Literature Club Plus!
+2021-07-05 00:32:49,468 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 27       Doki Doki Literature Club Plus!                             
+2021-07-05 00:32:49,756 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:49,781 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:49,850 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Doki Doki Literature Club!
+2021-07-05 00:32:49,851 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      28 Doki Doki Literature Club!
+2021-07-05 00:32:49,902 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 28       Doki Doki Literature Club!                                  
+2021-07-05 00:32:50,242 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:50,267 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:50,350 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for BeamNG DRIVE
+2021-07-05 00:32:50,351 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      29 BeamNG DRIVE
+2021-07-05 00:32:50,411 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 29       BeamNG DRIVE                                                
+2021-07-05 00:32:50,755 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:50,780 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:50,873 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Borderlands 3
+2021-07-05 00:32:50,874 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      30 Borderlands 3
+2021-07-05 00:32:50,985 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 30       Borderlands 3                                               
+2021-07-05 00:32:51,277 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:51,302 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:51,363 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Brigador Up-Armored Edition
+2021-07-05 00:32:51,364 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      31 Brigador Up-Armored Edition
+2021-07-05 00:32:51,418 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 31       Brigador Up-Armored Edition                                 
+2021-07-05 00:32:51,748 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:51,773 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:51,826 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Nanotale - Typing Chronicles (The Sunken Caves)
+2021-07-05 00:32:51,942 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      32 Nanotale - Typing Chronicles (The Sunken Caves)
+2021-07-05 00:32:52,035 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 32       Nanotale - Typing Chronicles (The Sunken Caves)             
+2021-07-05 00:32:52,302 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:52,327 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:52,427 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Sins of a Solar Empire: Trinity
+2021-07-05 00:32:52,429 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      33 Sins of a Solar Empire: Trinity
+2021-07-05 00:32:52,485 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 33       Sins of a Solar Empire: Trinity                             
+2021-07-05 00:32:52,784 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:52,809 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:52,895 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Speed Limit
+2021-07-05 00:32:52,896 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      34 Speed Limit
+2021-07-05 00:32:52,952 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 34       Speed Limit                                                 
+2021-07-05 00:32:53,272 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:53,298 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:53,345 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Northgard
+2021-07-05 00:32:53,346 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      35 Northgard
+2021-07-05 00:32:53,393 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 35       Northgard                                                   
+2021-07-05 00:32:53,722 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:53,788 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:53,839 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for House Flipper
+2021-07-05 00:32:53,878 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      36 House Flipper
+2021-07-05 00:32:54,168 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 36       House Flipper                                               
+2021-07-05 00:32:54,476 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:54,501 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:54,566 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for ATOM RPG
+2021-07-05 00:32:54,567 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      37 ATOM RPG
+2021-07-05 00:32:54,609 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 37       ATOM RPG                                                    
+2021-07-05 00:32:54,951 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:54,977 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:55,052 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Prison Architect
+2021-07-05 00:32:55,053 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      38 Prison Architect
+2021-07-05 00:32:55,110 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 38       Prison Architect                                            
+2021-07-05 00:32:55,437 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:55,462 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:55,528 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Loop Hero
+2021-07-05 00:32:55,529 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      39 Loop Hero
+2021-07-05 00:32:55,585 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 39       Loop Hero                                                   
+2021-07-05 00:32:55,918 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:55,952 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:56,077 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Raft (ะเ๔๒)
+2021-07-05 00:32:56,078 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      40 Raft (ะเ๔๒)
+2021-07-05 00:32:56,184 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 40       Raft (ะเ๔๒)                                                 
+2021-07-05 00:32:56,548 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:56,573 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:56,648 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for GreedFall - Gold Edition
+2021-07-05 00:32:56,649 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      41 GreedFall - Gold Edition
+2021-07-05 00:32:56,701 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 41       GreedFall - Gold Edition                                    
+2021-07-05 00:32:57,030 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:57,055 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:57,155 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for TheHunter Call of the Wild
+2021-07-05 00:32:57,156 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      42 TheHunter Call of the Wild
+2021-07-05 00:32:57,209 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 42       TheHunter Call of the Wild                                  
+2021-07-05 00:32:57,537 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:57,562 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:57,635 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Sea of Thieves
+2021-07-05 00:32:57,636 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      43 Sea of Thieves
+2021-07-05 00:32:57,685 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 43       Sea of Thieves                                              
+2021-07-05 00:32:57,969 wrapper.py:__init__:16 - Thread-1 - INFO:Loading dictionaries from C:\Users\Admin\AppData\Local\Programs\Python\Python39\lib\site-packages\pymorphy2_dicts_ru\data
+2021-07-05 00:32:57,994 wrapper.py:__init__:20 - Thread-1 - INFO:format: 2.4, revision: 417127, updated: 2020-10-11T15:05:51.070345
+2021-07-05 00:32:58,044 gameparse.py:getAllData:112 - Thread-1 - INFO:Getter all data for Shipwreck Escape
+2021-07-05 00:32:58,201 senddata.py:saveNewGame:81 - Thread-1 - INFO:Game insert      44 Shipwreck Escape
+2021-07-05 00:32:58,260 senddata.py:setTags:118 - Thread-1 - INFO:Set tags 44       Shipwreck Escape                                            
+2021-07-05 00:32:58,260 analyzer.py:taggingText:119 - Thread-1 - INFO:Ended work thread #1 Game addet

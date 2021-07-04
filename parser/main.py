@@ -3,12 +3,13 @@ from listgame import ListGame as LG
 from gameparse import GameParse as GP
 from senddata import SendData as SD
 from var_dump import var_dump
-from threading import Thread
+from threading import Thread, Lock
+
 import timing
 import analyzer
 import common
 import logging
-
+import logging.config
 
 from colorama import init, Fore, Back, Style
 
@@ -16,6 +17,7 @@ init(autoreset=True)
 
 connect = mysqlconn.getConnection()
 try:
+  lock = Lock()
   with connect.cursor() as cursor:
     class ControlParser(Thread):
       global connect, cursor
@@ -26,39 +28,45 @@ try:
 
       def run(self):
         """Запуск потока"""
-        print(Back.GREEN+Fore.BLACK+"Thread #"+str(self.numTh)+" started")
+        logging.info("Thread #"+str(self.numTh)+" started")
         listPage = LG(self.catlink)
         listPage.getAllGame()
         for linkGame in listPage.listAllGame:
-          sendGameData = SD(connect, cursor, linkGame)
-          sendGameData.setCategory(self.catlink)
-        print(Back.RED+Fore.BLACK+"Ended work thread #"+str(self.numTh))
+          with lock:
+            sendGameData = SD(connect, cursor, linkGame)
+            sendGameData.setCategory(self.catlink)
+        logging.info("Ended work thread #"+str(self.numTh))
 
     def createThread(pagelist):
-      
       threads = []
       numThread = 0
       for catLink in pagelist:
-        threads.append(ControlParser(catLink, numThread))
+        contrThread = ControlParser(catLink, numThread)
+        threads.append(contrThread)
+        contrThread.setName("Thread-"+catLink.split("/")[-2])
         numThread += 1
       for t in threads:
         t.start()
       for t in threads:
         t.join()
-      print(Back.RED+Fore.BLACK+"End all thread in main")
+      logging.info("End all thread in main")
 
     def main():
+      logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
+      logger = logging.getLogger(__name__)
       try:
-        logging.config.fileConfig('/path/to/logging.ini',disable_existing_loggers=False)
-        logger = logging.getLogger(__name__)
         global connect, cursor
-        print("Started primary script")
+        logger.debug("Started primary script")
         connToBase = SD(connect, cursor)
+        print(Back.GREEN+Fore.BLACK+"Format database")
         connToBase.formatDatabase()
+        print(Back.GREEN+Fore.BLACK+"Start analyzer")
         analyzer.main()
         allCateg = common.getCategory('https://s5.torents-igruha.org/')
-        # allCateg = ["https://s5.torents-igruha.org/game-open-world/"]
+        # allCateg = ["https://s5.torents-igruha.org/newgames/page/3/"]
+        print(Back.GREEN+Fore.BLACK+"Started ")
         createThread(allCateg)
+        print(Back.GREEN+Fore.BLACK+"End all script")
 
         # print(Back.GREEN+Fore.BLACK+"TESTING ...")
       except OSError as e:
