@@ -1,33 +1,29 @@
 import pymysql, mysqlconn
 import logging
-import threading
+from threading import Lock
 from colorama import init, Fore, Back, Style
+lock = Lock()
 class SendData:
-  semaphore = threading.BoundedSemaphore(1)
-  def __init__(self, connect, cursor, pageGame=None):
+  def __init__(self, connect, cursor, pageGame=None, catLink=None):
     self.cursor = cursor
     self.connect = connect
+    self.linkCategory = catLink
     self.pageGame = pageGame # Link game on site
     self.id = None # id game if exist in database, checkGame for the data
     if(pageGame):
-      self.id 
+      self.checkGame()
     self.idCat = None
     
-
   def sendRequest(self, request, data): # Function send data in database
     self.cursor.execute(request, data)
     result = self.cursor.fetchone()
     return result
   
   def multiRequest(self, requests): # dict request -> data
-    try:
-      self.semaphore.acquire()
-      for request, data in requests.items():
-        self.cursor.execute(request, data)
-        result = self.cursor.fetchone()
-      self.connect.commit()
-    finally:
-      self.semaphore.release()
+    for request, data in requests.items():
+      self.cursor.execute(request, data)
+      result = self.cursor.fetchone()
+    self.connect.commit()
     return result
 
   def formatDatabase(self):
@@ -51,18 +47,19 @@ class SendData:
       "ALTER TABLE `game` AUTO_INCREMENT = 1;":None,
       "ALTER TABLE `game_tags` AUTO_INCREMENT = 1;":None
     }
-    self.multiRequest(reqFormat)
+    print("Formated")
+    logging.info("Formated all data")
+    return self.multiRequest(reqFormat)
     
 
-  def checkCategory(self, linkCategory):
+  def setCategory(self):
     reqCat = "SELECT `cat_id` FROM `category` WHERE `cat_link`=%s"
-    self.idCat = self.sendRequest(reqCat, (linkCategory))["cat_id"]
+    self.idCat = self.sendRequest(reqCat, (self.linkCategory))["cat_id"]
 
-
-  def setCategory(self, linkCategory):
-    self.checkCategory(linkCategory)
     reqSetcat = "INSERT INTO `cat_game`(`game_id`, `cat_id`) VALUES (%s,%s)"
+    
     self.sendRequest(reqSetcat, (self.id, self.idCat))
+    self.connect.commit()
 
 
   def saveNewGame(self, name, img, desc, file, media, spec, date, views=0, indicator=None): # Adding new game in database
@@ -74,19 +71,15 @@ class SendData:
     self.id = self.connect.insert_id()
     self.sendRequest(reqFull, (self.id, desc, spec, media, file))
     self.sendRequest(reqLink, (self.id, self.pageGame, name))
-    
-
-
-    print(Fore.BLUE+"Game insert %7d %s" % (self.id, name))
+    with lock:
+      print(Fore.BLUE+"Game insert %7d %s" % (self.id, name))
     logging.info("Game insert %7d %s" % (self.id, name))
+    self.connect.commit()
 
   def checkGame(self): # Check game for exist
-    reqSearch = "SELECT `id` FROM `torrent_link` WHERE `link`=%s"
-    self.id = self.sendRequest(reqSearch, (self.pageGame))
-
-    if self.id:
-      self.id = self.id['id']
-      return (self.id, 1)
+    reqSearch = "SELECT `id` FROM `torrent_link` WHERE `link` LIKE %s"
+    self.id = self.sendRequest(reqSearch, (self.pageGame))['id']
+    return self.id
   
   def updateDesc(self, desc): # Update description
     upDesc = {"UPDATE `fulldescip` SET `description`=%s WHERE `game_id`=%s":(desc, self.id)}
@@ -114,5 +107,6 @@ class SendData:
   def setTags(self, tags, name, shortDes):
     reqTags = {"INSERT INTO `game_tags` (`id`, `name`, `meta-desc`, `meta-tags`) VALUES (%s, %s, %s, %s);":(self.id, name, shortDes, tags)}
     self.multiRequest(reqTags)
-    print(Fore.GREEN+"Set tags %-8d %-60s"%(self.id,name))
+    with lock:
+      print(Fore.GREEN+"Set tags %-8d %-60s"%(self.id,name))
     logging.info("Set tags %-8d %-60s"%(self.id,name))

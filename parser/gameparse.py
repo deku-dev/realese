@@ -110,7 +110,6 @@ class GameParse: # Page game with all data
     self.game = self.getName()
     self.image = self.getImg()
     logging.info("Getter all data for %s"%(self.game))
-    print("Help")
     return self.game, self.image, self.description, self.file, self.media, self.specification, self.date, self.views, ",".join(self.gameStatus)
 
 

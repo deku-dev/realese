@@ -8,7 +8,7 @@ from threading import Thread, Lock
 import timing
 import analyzer
 import common
-import logging
+import logging, asyncio
 import logging.config
 
 from colorama import init, Fore, Back, Style
@@ -33,8 +33,8 @@ try:
         listPage.getAllGame()
         for linkGame in listPage.listAllGame:
           with lock:
-            sendGameData = SD(connect, cursor, linkGame)
-            sendGameData.setCategory(self.catlink)
+            sendGameData = SD(connect, cursor, linkGame, self.catlink)
+            sendGameData.setCategory()
         logging.info("Ended work thread #"+str(self.numTh))
 
     def createThread(pagelist):
@@ -42,8 +42,10 @@ try:
       numThread = 0
       for catLink in pagelist:
         contrThread = ControlParser(catLink, numThread)
+        contrThread.name = "Thread-"+catLink.split("/")[-2]
+        contrThread.daemon = True
+        print("Thread - %s started" % (contrThread.name))
         threads.append(contrThread)
-        contrThread.setName("Thread-"+catLink.split("/")[-2])
         numThread += 1
       for t in threads:
         t.start()
@@ -57,13 +59,13 @@ try:
       try:
         global connect, cursor
         logger.debug("Started primary script")
-        connToBase = SD(connect, cursor)
-        print(Back.GREEN+Fore.BLACK+"Format database")
-        connToBase.formatDatabase()
-        print(Back.GREEN+Fore.BLACK+"Start analyzer")
-        analyzer.main()
+        # connToBase = SD(connect, cursor)
+        # print(Back.GREEN+Fore.BLACK+"Format database")
+        # connToBase.formatDatabase()
+        # print(Back.GREEN+Fore.BLACK+"Start analyzer")
+        # analyzer.main()
         allCateg = common.getCategory('https://s5.torents-igruha.org/')
-        # allCateg = ["https://s5.torents-igruha.org/newgames/page/3/"]
+        allCateg = ["https://s5.torents-igruha.org/newgames/"]
         print(Back.GREEN+Fore.BLACK+"Started ")
         createThread(allCateg)
         print(Back.GREEN+Fore.BLACK+"End all script")
