@@ -34,20 +34,13 @@ import timing
 from gameparse import GameParse as GP
 from listgame import ListGame as LG
 from senddata import SendData as SD
-
-kernel32 = ctypes.windll.kernel32
-kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 init(autoreset=True) 
 logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 
-def saveObj(obj, name ):
-  with open('obj/'+ name + '.pkl', 'wb') as f:
-    pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
-def loadObj(name):
-  with open('obj/' + name + '.pkl', 'rb') as f:
-    return pickle.load(f)
+
+
 
 # for pagelink in getCategory("https://s5.torents-igruha.org/"):
 #   listPage = LG(pagelink)
