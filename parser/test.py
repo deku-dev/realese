@@ -1,54 +1,46 @@
-# coding=utf8
+# coding=utf-8
+import asyncio
+import ctypes
+import datetime
+import glob
+import io
 import json
+import logging
+import logging.config
+import os
+import pickle
 import re
-from urllib.parse import urlparse
-from pprint import pprint
-from var_dump import var_dump
-from threading import Thread
-from nltk import word_tokenize
-from nltk import Text
-from nltk.probability import FreqDist
-from nltk.corpus import stopwords
-from summa.summarizer import summarize
-
-from rutermextract import TermExtractor
-
-from listgame import ListGame as LG
-from gameparse import GameParse as GP
-from senddata import SendData as SD
-
-from colorama import init, Fore, Back, Style
-
+import string
 import time
+from pprint import pprint
+from threading import Thread, Lock
+from urllib.parse import urlparse
+
 import bs4
 import parsel
 import pymysql
 import requests
+from colorama import Back, Fore, Style, init
+from nltk import Text, word_tokenize
+from nltk.corpus import stopwords
+from nltk.probability import FreqDist
+from rutermextract import TermExtractor
+from summa.summarizer import summarize
+from var_dump import var_dump
+
+import common
 import mysqlconn
-import asyncio
 import timing
-import io
-import string
-import pickle
-import os
-import datetime
-import glob
-import ctypes
-kernel32 = ctypes.windll.kernel32
-kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+from gameparse import GameParse as GP
+from listgame import ListGame as LG
+from senddata import SendData as SD
+init(autoreset=True) 
+logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
 
-def getCategory(page):
-  catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
-  catList = catPage.select("#menuigruha li a")
-  return [item["href"] for item in catList]
 
-def saveObj(obj, name ):
-  with open('obj/'+ name + '.pkl', 'wb') as f:
-    pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
-def loadObj(name):
-  with open('obj/' + name + '.pkl', 'rb') as f:
-    return pickle.load(f)
+
 
 # for pagelink in getCategory("https://s5.torents-igruha.org/"):
 #   listPage = LG(pagelink)
@@ -120,19 +112,54 @@ def test():
 def test2(one, two, three):
   print(two, one, three)
 
-init(autoreset=True) 
-date = "2030-05"
-# dates = time.strftime("%Y-%m-%d", time.strptime(date, "%Y-%m"))
+# init(autoreset=True) 
+# date = "2030-05"
+# # dates = time.strftime("%Y-%m-%d", time.strptime(date, "%Y-%m"))
 
-reqt = "SELECT `id` FROM `torrent_link` WHERE `link`=%s"
-connect = mysqlconn.getConnection()
-try:
-  with connect.cursor() as cursor:
-    cursor.execute(reqt, ("https://s5.torednts-igruha.org/1405-the-godfather-ii.html"))
-    result = cursor.fetchone()
-    connect.commit()
-    if result:
-      print(result)
+# reqt = "SELECT `id` FROM `torrent_link` WHERE `link`=%s"
+# connect = mysqlconn.getConnection()
+# try:
+#   with connect.cursor() as cursor:
+#     cursor.execute(reqt, ("https://s5.torednts-igruha.org/1405-the-godfather-ii.html"))
+#     result = cursor.fetchone()
+#     connect.commit()
+#     if result:
+#       print(result)
 
-finally:
-  connect.close()
+# finally:
+#   connect.close()
+lock = Lock()
+class ControlParser(Thread):
+  def __init__(self, pageCat, numThread):
+    Thread.__init__(self)
+    self.catlink = pageCat
+    self.numTh = numThread
+
+  def run(self):
+    """Запуск потока"""
+    with lock:
+      print(self.getName())
+      time.sleep(0.5)
+    logger.debug("Test thread name")
+
+
+def createThread(pageDict):
+  threads = []
+  numThread = 0
+  for catLink in pageDict:
+    contrThread = ControlParser(catLink, numThread)
+    contrThread.setName("Thread-"+catLink.split("/")[-2])
+    threads.append(contrThread)
+    numThread += 1
+  for t in threads:
+    t.start()
+  for t in threads:
+    t.join()
+  logger.debug(Back.RED+Fore.BLACK+"End all thread in main")
+
+
+def main():
+  allCateg = common.getCategory('https://s5.torents-igruha.org/') 
+  createThread(allCateg)
+
+main()

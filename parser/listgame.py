@@ -23,5 +23,4 @@ class ListGame: # page with list game
       nextPageHtml = bs4.BeautifulSoup(requests.get(linkNewPage).text, "html5lib")
       self.listAllGame.extend(self.getlistlink(nextPageHtml))
       linkNewPage = nextPageHtml.find('span', class_="page-next").parent.get('href')
-    # print(self.listAllGame)
     return self.listAllGame # list all game for category
