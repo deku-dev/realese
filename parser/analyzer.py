@@ -20,8 +20,8 @@ import common, traceback
 
 
 from colorama import init, Fore, Back, Style
-logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
+# logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
+# logger = logging.getLogger(__name__)
 init(autoreset=True) 
 
 numGameTeach = 0
