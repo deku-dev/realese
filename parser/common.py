@@ -4,7 +4,7 @@ import pickle
 def getCategory(page):
   catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
   catList = catPage.select("#menuigruha li a")
-  return [ item["href"] for item in catList]
+  return { item["href"]:item.text for item in catList}
 
 def saveObj(obj, name ):
   with open('obj/'+ name + '.pkl', 'wb') as f:

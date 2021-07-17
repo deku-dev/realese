@@ -68,8 +68,7 @@ class ControlParser(Thread):
     Thread.__init__(self)
     self.numTh = numThread
     self.mode = mode
-    self.catLink = pageLink
-    self.listPage = LG(self.catLink)
+    self.sliceList = pageLink
     
 
   def run(self):
@@ -91,9 +90,8 @@ class ControlParser(Thread):
   def teachText(self):
     global numGameTeach, listTeachGame
     lock = Lock()
-    self.listPage.getAllGame()
     with open("file/description"+str(self.numTh)+".txt", "w", encoding='utf8') as f:
-      for linkGame in self.listPage.listAllGame:
+      for linkGame in self.sliceList:
         gameParse = GP(linkGame)
         desc = gameParse.getDescription(True)
         name = gameParse.getName()
@@ -109,9 +107,8 @@ class ControlParser(Thread):
 
   def taggingText(self):
     global numGameInsert
-    self.listPage.getAllGame()
     lock = Lock()
-    for linkGame in self.listPage.listAllGame:
+    for linkGame in self.sliceList:
       gameParse = GP(linkGame)
       desc = gameParse.getDescription(True)
       name = gameParse.getName()
@@ -163,14 +160,18 @@ class ControlParser(Thread):
 
 def createThread(pagelist, mode=False):
   threads = []
+  countThread = 50
   numThread = 1
+  sliceItem = []
   for pageLink in pagelist:
-    contrThread = ControlParser(pageLink, numThread, mode)
-    contrThread.name = "Thread-"+pageLink.split("/")[-2]
-    contrThread.daemon = True
-    print("Thread - %s started "%(contrThread.name))
-    threads.append(contrThread)
-    numThread += 1
+    sliceItem.append(pageLink)
+    if len(sliceItem) >= countThread:
+      contrThread = ControlParser(sliceItem, numThread, mode)
+      contrThread.daemon = True
+      print("Thread - %s started "%(contrThread.name))
+      threads.append(contrThread)
+      numThread += 1
+      sliceItem.clear()
   for t in threads:
     t.start()
   for t in threads:
@@ -180,11 +181,15 @@ def createThread(pagelist, mode=False):
 
 def main():
   logging.info("Started program analyzer.py")
+  listAll = LG("https://s5.torents-igruha.org/newgames/")
+  listUnique = listAll.uniqueListGame()
   # pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,130)]
-  # pageSite = ["https://s5.torents-igruha.org/newgames/page/3/"]
-  pageSite = common.getCategory('https://s5.torents-igruha.org/')
+  # pageSite = common.getCategory('https://s5.torents-igruha.org/')
+  # pageSite = ["https://s8.torents-igruha.org/gog/"]
+
   print("Start analyzer")
   print("Collect data games")
-  createThread(pageSite)
+  createThread(listUnique)
   print("Start send to database game")
-  createThread(pageSite, True)
+  createThread(listUnique, True)
+main()

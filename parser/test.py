@@ -13,7 +13,7 @@ import re
 import string
 import time
 from pprint import pprint
-from threading import Thread, Lock
+from threading import Semaphore, Thread, Lock, BoundedSemaphore
 from urllib.parse import urlparse
 
 import bs4
@@ -128,7 +128,9 @@ def test2(one, two, three):
 
 # finally:
 #   connect.close()
-lock = Lock()
+# lock = Lock()
+from queue import Queue
+
 class ControlParser(Thread):
   def __init__(self, pageCat, numThread):
     Thread.__init__(self)
@@ -136,30 +138,39 @@ class ControlParser(Thread):
     self.numTh = numThread
 
   def run(self):
+<<<<<<< HEAD
     """Запуск потока"""
     with lock:
       print(self.getName())
-      time.sleep(0.5)
+
+    time.sleep(1)
+    print(self.getName())
     logger.debug("Test thread name")
+    semaphor.release()
 
 
-def createThread(pageDict):
+
+def createThread():
   threads = []
+
   numThread = 0
-  for catLink in pageDict:
+  for catLink in range(0, 400):
+    
     contrThread = ControlParser(catLink, numThread)
-    contrThread.setName("Thread-"+catLink.split("/")[-2])
+    contrThread.setName("Thread-"+str(catLink))
+    contrThread.setDaemon(True)
     threads.append(contrThread)
+    contrThread.start()
     numThread += 1
-  for t in threads:
-    t.start()
+
+
+>>>>>>> ae5899c325428f3bb5b4ca95fc558a12fae73c93
   for t in threads:
     t.join()
   logger.debug(Back.RED+Fore.BLACK+"End all thread in main")
 
-
 def main():
-  allCateg = common.getCategory('https://s5.torents-igruha.org/') 
-  createThread(allCateg)
+  # allCateg = common.getCategory('https://s5.torents-igruha.org/') 
+  createThread()
 
 main()

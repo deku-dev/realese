@@ -1,4 +1,10 @@
 workspace/*
 .vscode/*
-__pycache__/*
-.idea/*
+parser/.idea/*
+parser/.vscode/*
+node_modules/*
+parser/debug/parser.log
+parser/file/*.txt
+parser/obj/*.pkl
+parser/__pycache__/*
+parser/debug/parser.log

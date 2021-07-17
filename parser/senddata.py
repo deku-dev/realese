@@ -78,7 +78,8 @@ class SendData:
 
   def checkGame(self): # Check game for exist
     reqSearch = "SELECT `id` FROM `torrent_link` WHERE `link` LIKE %s"
-    self.id = self.sendRequest(reqSearch, (self.pageGame))['id']
+    idt = self.sendRequest(reqSearch, (self.pageGame))
+    self.id = False if idt is None else idt['id']
     return self.id
   
   def updateDesc(self, desc): # Update description

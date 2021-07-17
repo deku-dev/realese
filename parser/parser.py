@@ -2,7 +2,6 @@
 # https://torrent-igruha.org/         #menuigruha li a
 import requests, bs4, random, pymysql, re
 import parsel
-from OpenSSL import rand
 from urllib.parse import urlparse
 from random import randrange
 from datetime import date, timedelta
@@ -64,12 +63,7 @@ def parserText(url, selector, sql):
 func: Выбор элементов из массива
 """
 # (NULL, 'gurich', 'wade', 'dekanip', 'wader', current_timestamp(), 'gyrycvadym@gmail.com');"
-def randomSQL(list, selector):
-  x= 0
-  while x<6:
-    selector += "(NULL, '"+random.choice(rand)+"', '"+random.choice(rand)+"', 'dekanip"+random.choice(rand)+"', '"+random.choice(rand)+"', current_timestamp(), '"+random.choice(rand)+"@gmail.com'),"
-    x+=1
-  print(selector)
+
 # rand = ['one','two','three','four','five','six','seven','eight','ten']
 # selector =  "INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `password`, `nickname`, `date`, `email`) VALUES "
 # randomSQL(rand, selector)
