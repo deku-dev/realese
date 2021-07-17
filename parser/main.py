@@ -41,6 +41,8 @@ try:
       threads = []
       numThread = 0
       for catLink in pagelist:
+        if catLink == "https://repack-igruha.org/":
+          continue
         contrThread = ControlParser(catLink, numThread)
         contrThread.name = "Thread-"+catLink.split("/")[-2]
         contrThread.daemon = True
@@ -59,13 +61,13 @@ try:
       try:
         global connect, cursor
         logger.debug("Started primary script")
-        connToBase = SD(connect, cursor)
-        print(Back.GREEN+Fore.BLACK+"Format database")
-        connToBase.formatDatabase()
-        print(Back.GREEN+Fore.BLACK+"Start analyzer")
-        analyzer.main()
+        # connToBase = SD(connect, cursor)
+        # print(Back.GREEN+Fore.BLACK+"Format database")
+        # connToBase.formatDatabase()
+        # print(Back.GREEN+Fore.BLACK+"Start analyzer")
+        # analyzer.main()
         allCateg = common.getCategory('https://s5.torents-igruha.org/')
-        allCateg = ["https://s5.torents-igruha.org/newgames/"]
+        # allCateg = ["https://s5.torents-igruha.org/newgames/"]
         print(Back.GREEN+Fore.BLACK+"Started ")
         createThread(allCateg)
         print(Back.GREEN+Fore.BLACK+"End all script")
