@@ -3,7 +3,7 @@ workspace/*
 parser/.idea/*
 parser/.vscode/*
 node_modules/*
-parser/__pycache__/*
 parser/debug/parser.log
 parser/file/*.txt
 parser/obj/*.pkl
+parser/__pycache__/*
