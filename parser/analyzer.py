@@ -1,4 +1,4 @@
-# coding=utf8
+# encoding=utf-8
 import requests, bs4, re, string, os, mysqlconn, pymysql
 import logging
 from listgame import ListGame as LG
@@ -63,20 +63,17 @@ def termAllText():
     termDict = { term.normalized: 1 / term.count for term in termExtr(text) }
     common.saveObj(termDict, "terms")
 
-class ControlParser(Thread):
-  def __init__(self, pageLink, numThread, mode=False):
-    Thread.__init__(self)
-    self.numTh = numThread
+class ControlParser:
+  def __init__(self, pageLink, mode=False):
     self.mode = mode
     self.sliceList = pageLink
+    # print(self.sliceList)
     
 
-  def run(self):
-    """Запуск потока"""
+  def runParse(self):
     self.connect = mysqlconn.getConnection()
     try:
       with self.connect.cursor() as self.cursor:
-        logging.info("Thread analyzer #"+str(self.numTh)+" started")
         if(self.mode):
           logging.info("Mode tagging text start")
           self.taggingText()
@@ -89,9 +86,9 @@ class ControlParser(Thread):
   
   def teachText(self):
     global numGameTeach, listTeachGame
-    lock = Lock()
-    with open("file/description"+str(self.numTh)+".txt", "w", encoding='utf8') as f:
+    with open("file/description.txt", "a", encoding='utf-8') as f:
       for linkGame in self.sliceList:
+        # print(linkGame)
         gameParse = GP(linkGame)
         desc = gameParse.getDescription(True)
         name = gameParse.getName()
@@ -99,15 +96,13 @@ class ControlParser(Thread):
           continue
         logging.info("Teach game name -%s" % (name))
         f.write(analyzeText(desc))
-        with lock:
-          listTeachGame.append(linkGame)
-          print("Teach game %6d %-60s"%(numGameTeach, name))
-          numGameTeach += 1
-    logging.info("Ended work thread teach #"+str(self.numTh))
+        listTeachGame.append(linkGame)
+        print("Teach game %6d %-60s"%(numGameTeach, name))
+        numGameTeach += 1
+    
 
   def taggingText(self):
     global numGameInsert
-    lock = Lock()
     for linkGame in self.sliceList:
       gameParse = GP(linkGame)
       desc = gameParse.getDescription(True)
@@ -118,11 +113,9 @@ class ControlParser(Thread):
         continue
       sendTags.saveNewGame(*gameParse.getAllData())
       sendTags.setTags(tagsComp, name, ".".join(self.shortDesc(desc)))
-      with lock:
-        print("Save game %6d %-70s"%(numGameInsert, name))
-        numGameInsert += 1
+      print("Save game %6d %-70s"%(numGameInsert, name))
+      numGameInsert += 1
       # print("%-75s%-8d%3d%5d" % (gameParse.getName(), len(tagsComp), self.numTh, counterTa))
-    logging.info("Ended work thread #"+str(self.numTh)+" Game addet")
 
 
 
@@ -159,37 +152,22 @@ class ControlParser(Thread):
     return heapq.nlargest(3, sent2score, key=sent2score.get)
 
 def createThread(pagelist, mode=False):
-  threads = []
-  countThread = 50
-  numThread = 1
-  sliceItem = []
-  for pageLink in pagelist:
-    sliceItem.append(pageLink)
-    if len(sliceItem) >= countThread:
-      contrThread = ControlParser(sliceItem, numThread, mode)
-      contrThread.daemon = True
-      print("Thread - %s started "%(contrThread.name))
-      threads.append(contrThread)
-      numThread += 1
-      sliceItem.clear()
-  for t in threads:
-    t.start()
-  for t in threads:
-    t.join()
+  contrThread = ControlParser(pagelist, mode)
+  contrThread.runParse()
   mode or termAllText()
-  mode or addInOneFile(numThread)
 
 def main():
   logging.info("Started program analyzer.py")
   listAll = LG("https://s5.torents-igruha.org/newgames/")
-  listUnique = listAll.uniqueListGame()
+  if os.path.exists('obj/listAllPage.pkl'):
+    listUnique = common.loadObj("listAllPage")
+  else:
+    listUnique = listAll.uniqueListGame()
   # pageSite = ["https://s5.torents-igruha.org/newgames/page/"+str(page)+"/" for page in range(1,130)]
   # pageSite = common.getCategory('https://s5.torents-igruha.org/')
   # pageSite = ["https://s8.torents-igruha.org/gog/"]
-
   print("Start analyzer")
   print("Collect data games")
   createThread(listUnique)
   print("Start send to database game")
   createThread(listUnique, True)
-main()

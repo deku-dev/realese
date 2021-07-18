@@ -55,9 +55,7 @@ class SendData:
   def setCategory(self):
     reqCat = "SELECT `cat_id` FROM `category` WHERE `cat_link`=%s"
     self.idCat = self.sendRequest(reqCat, (self.linkCategory))["cat_id"]
-
     reqSetcat = "INSERT INTO `cat_game`(`game_id`, `cat_id`) VALUES (%s,%s)"
-    
     self.sendRequest(reqSetcat, (self.id, self.idCat))
     self.connect.commit()
 
@@ -71,8 +69,8 @@ class SendData:
     self.id = self.connect.insert_id()
     self.sendRequest(reqFull, (self.id, desc, spec, media, file))
     self.sendRequest(reqLink, (self.id, self.pageGame, name))
-    with lock:
-      print(Fore.BLUE+"Game insert %7d %s" % (self.id, name))
+    # with lock:
+    #   print(Fore.BLUE+"Game insert %7d %s" % (self.id, name))
     logging.info("Game insert %7d %s" % (self.id, name))
     self.connect.commit()
 
@@ -108,6 +106,6 @@ class SendData:
   def setTags(self, tags, name, shortDes):
     reqTags = {"INSERT INTO `game_tags` (`id`, `name`, `meta-desc`, `meta-tags`) VALUES (%s, %s, %s, %s);":(self.id, name, shortDes, tags)}
     self.multiRequest(reqTags)
-    with lock:
-      print(Fore.GREEN+"Set tags %-8d %-60s"%(self.id,name))
+    # with lock:
+    #   print(Fore.GREEN+"Set tags %-8d %-60s"%(self.id,name))
     logging.info("Set tags %-8d %-60s"%(self.id,name))

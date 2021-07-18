@@ -1,8 +1,19 @@
 import re, bs4, requests, json, datetime
 import logging
+import os.path
+
 class GameParse: # Page game with all data
   def __init__(self, page):
-    self.gameHtml = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
+    # print(page)
+    nameFile = page.split("/")[-1]
+    if os.path.exists('html/'+nameFile):
+      with open("html/"+nameFile, "r", encoding="utf-8") as gameFile:
+        response = gameFile.read()
+    else:
+      res = requests.get(page)
+      res.encoding = 'utf-8'
+      response = res.text
+    self.gameHtml = bs4.BeautifulSoup(response, "html5lib")
     self.dateGame = 0
     self.gameStatus = []
 

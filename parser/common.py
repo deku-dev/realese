@@ -1,5 +1,6 @@
 import bs4, requests
 import pickle
+import chardet
 
 def getCategory(page):
   catPage = bs4.BeautifulSoup(requests.get(page).text, "html5lib")
@@ -13,3 +14,9 @@ def saveObj(obj, name ):
 def loadObj(name):
   with open('obj/' + name + '.pkl', 'rb') as f:
     return pickle.load(f)
+
+def getFileEncoding(file):
+  with open(file, 'rb') as fenc:
+    rawdata = fenc.read()
+    result = chardet.detect(rawdata)
+    return result['encoding']

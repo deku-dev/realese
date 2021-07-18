@@ -25,7 +25,8 @@ class ListGame: # page with list game
     for gameItem in self.listAllGame:
       uniqueList.add(gameItem)
     print("Unique item "+str(len(uniqueList)))
-    return uniqueList
+    common.saveObj(uniqueList, "listAllPage")
+    return list(uniqueList)
 
 
   def getAllGame(self):

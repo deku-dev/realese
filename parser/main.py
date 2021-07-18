@@ -4,7 +4,8 @@ from gameparse import GameParse as GP
 from senddata import SendData as SD
 from var_dump import var_dump
 from threading import Thread, Lock
-
+import chardet
+import download , os
 import timing
 import analyzer
 import common
@@ -19,41 +20,25 @@ connect = mysqlconn.getConnection()
 try:
   lock = Lock()
   with connect.cursor() as cursor:
-    class ControlParser(Thread):
+    class ControlParser:
       global connect, cursor
-      def __init__(self, pageCat, numThread):
-        Thread.__init__(self)
+      def __init__(self, pageCat):
         self.catlink = pageCat
-        self.numTh = numThread
 
       def run(self):
         """Запуск потока"""
-        logging.info("Thread #"+str(self.numTh)+" started")
         listPage = LG(self.catlink)
-        listPage.getAllGame()
-        for linkGame in listPage.listAllGame:
-          with lock:
-            sendGameData = SD(connect, cursor, linkGame, self.catlink)
-            sendGameData.setCategory()
-        logging.info("Ended work thread #"+str(self.numTh))
+        for linkGame in listPage.getAllGame():
+          sendGameData = SD(connect, cursor, linkGame, self.catlink)
+          sendGameData.setCategory()
+          print("Set category "+linkGame)
 
     def createThread(pagelist):
-      threads = []
-      numThread = 0
       for catLink in pagelist:
         if catLink == "https://repack-igruha.org/":
           continue
-        contrThread = ControlParser(catLink, numThread)
-        contrThread.name = "Thread-"+catLink.split("/")[-2]
-        contrThread.daemon = True
-        print("Thread - %s started" % (contrThread.name))
-        threads.append(contrThread)
-        numThread += 1
-      for t in threads:
-        t.start()
-      for t in threads:
-        t.join()
-      logging.info("End all thread in main")
+        contrThread = ControlParser(catLink)
+        contrThread.run()
 
     def main():
       logging.config.fileConfig('logging.ini',disable_existing_loggers=False)
@@ -61,6 +46,14 @@ try:
       try:
         global connect, cursor
         logger.debug("Started primary script")
+        # download.main()
+        # print("Fix encoding")
+        # for file in os.listdir("html"):
+          
+        #   with open("html/"+file, encoding=common.getFileEncoding("html/"+file)) as fh:
+        #     data = fh.read()
+        #   with open("html/"+file, 'wb') as fh:
+            # fh.write(data.encode('utf-8'))
         # connToBase = SD(connect, cursor)
         # print(Back.GREEN+Fore.BLACK+"Format database")
         # connToBase.formatDatabase()
